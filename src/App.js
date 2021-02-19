@@ -6,6 +6,7 @@ import './App.css';
 
 import Home from './pages/home.component'
 import ShopPage from './pages/shop/shop.component';
+import signInSignUp from './pages/signIn-signUp/sign-in-sign-up.component'
 import Header from './components/header/header.component'
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Header/>
             <Route exact path='/' component={Home}/>
             <Route exact path='/shop' component={ShopPage}/>
+            <Route exact path='/signin' component={signInSignUp}/>
 
           </Router>
    
