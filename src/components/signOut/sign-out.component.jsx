@@ -43,8 +43,8 @@ class SignOut extends React.Component{
         }
     }
 
-    handleChange(e){
-        const {name, value} = e.target
+    handleChange(event){
+        const {name, value} = event.target
 
         this.setState({[name]: value})
     }
@@ -53,33 +53,37 @@ class SignOut extends React.Component{
         const {displayName, email, password, confirmPassword} = this.state
         return(
             <div className='sign-up'>
-                <h2 class='title'>I do not have an account</h2>
+                <h2 className='title'>I do not have an account</h2>
                 <span>Sign up with your email and password</span>
 
                 <form className='sign-up-form' onSubmit={this.handleSubmit}>
                     <FormInput
+                        label='Display Name'
                         type="text"
                         name='displayName'
                         value={displayName}
-                        onChange={this.handleChange}
+                        onChange={this.handleChange.bind(this)}
                     />
                       <FormInput
+                        label='Email'
                         type="email"
                         name='email'
                         value={email}
-                        onChange={this.handleChange}
+                        onChange={this.handleChange.bind(this)}
                     />
                       <FormInput
+                        label='password'
                         type="password"
                         name='password'
                         value={password}
-                        onChange={this.handleChange}
+                        onChange={this.handleChange.bind(this)}
                     />
                       <FormInput
+                        label='Confirm Password'
                         type="password"
                         name='confirmPassword'
                         value={confirmPassword}
-                        onChange={this.handleChange}
+                        onChange={this.handleChange.bind(this)}
                     />
                     <CustomButton type='submit'>Sign Up</CustomButton>
                 </form>
