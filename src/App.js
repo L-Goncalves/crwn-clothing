@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import { BrowserRouter as Router } from "react-router-dom";
 import './App.css';
 
-import Home from './pages/home.component';
+import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component';
 import SignInAndSignUp from './pages/signIn-signUp/sign-in-sign-up.component';
 import Header from './components/header/header.component';
@@ -37,7 +37,7 @@ class App extends React.Component {
         });
       }
 
-      // this.setState({ currentUser: userAuth });
+       this.setState({ currentUser: userAuth });
     });
   }
 
@@ -51,7 +51,7 @@ class App extends React.Component {
         <Router>
         <Header currentUser={this.state.currentUser} />
         <Switch>
-          <Route exact path='/' component={Home} />
+          <Route exact path='/' component={HomePage} />
           <Route path='/shop' component={ShopPage} />
           <Route path='/signin' component={SignInAndSignUp} />
         </Switch>
