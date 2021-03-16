@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { BrowserRouter as Router } from "react-router-dom";
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 
 import './App.css';
 
@@ -11,34 +11,30 @@ import SignInAndSignUp from './pages/signIn-signUp/sign-in-sign-up.component';
 import Header from './components/header/header.component';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
-import setCurrentUser from './redux/user/user-actions.js'
+import { setCurrentUser } from './redux/user/user-actions.js'
 
 class App extends React.Component {
-
-  
-
   unsubscribeFromAuth = null;
 
   componentDidMount() {
 
-    const {setCurrentUser} = this.props
+    
+
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
 
-       await userRef.onSnapshot(snapShot => {
-          setCurrentUser({
-            
+        userRef.onSnapshot(snapShot => {
+        this.props.setCurrentUser({
               id: snapShot.id,
               ...snapShot.data()
-            
           });
 
-           console.log(this.state);
+          
         });
       }
 
-      setCurrentUser(userAuth);
+      this.props.setCurrentUser(userAuth);
     });
   }
   // When we close the app it'll try to logout
@@ -62,7 +58,7 @@ class App extends React.Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
 })
 
